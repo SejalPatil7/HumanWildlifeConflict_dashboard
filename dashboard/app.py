@@ -102,7 +102,7 @@ html, body, [class*="css"] {{
     font-family: 'IBM Plex Sans', sans-serif;
 }}
 .main {{ background: {PAPER}; }}
-.block-container {{ padding-top: 2rem; max-width: 1200px; }}
+.block-container {{ padding-top: 4rem; max-width: 1200px; }}
 h1, h2, h3 {{ font-family: 'Fraunces', serif; color: {INK}; }}
 hr {{ border-color: {LINE}; }}
 section[data-testid="stSidebar"] {{
