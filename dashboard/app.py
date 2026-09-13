@@ -281,7 +281,7 @@ st.markdown(CONTOUR_SVG, unsafe_allow_html=True)
 # ==========================================================
 @st.cache_data
 def load_data():
-    df = pd.read_csv("../data/processed/incidents.csv")
+    df = pd.read_csv(DATA_PATH)
 
     numeric_cols = ["human_dead", "human_injured", "livestock_killed", "confidence"]
     for col in numeric_cols:
