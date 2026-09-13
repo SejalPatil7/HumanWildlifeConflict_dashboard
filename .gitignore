@@ -6,8 +6,11 @@ __pycache__/
 venv/
 .env
 
-# Streamlit cache
-.streamlit/
+# Streamlit cache (but keep the app's own theme config)
+.streamlit/*
+!.streamlit/config.toml
+!dashboard/.streamlit/
+!dashboard/.streamlit/config.toml
 
 # VS Code
 .vscode/

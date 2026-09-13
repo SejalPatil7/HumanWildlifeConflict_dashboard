@@ -1,7 +1,12 @@
+import os
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+
+# Resolve paths relative to this file's location, not the working directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(BASE_DIR, "..", "data", "processed", "incidents.csv")
 
 # ==========================================================
 # PAGE CONFIG
