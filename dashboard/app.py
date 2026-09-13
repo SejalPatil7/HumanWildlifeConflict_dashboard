@@ -579,6 +579,7 @@ with tab_map:
         lat="lat", lon="lon", size="severity", hover_name="headline",
         hover_data={"district": True, "state": True, "conflict_type": True,
                     "severity": True, "lat": False, "lon": False},
+        custom_data=["url"],
         zoom=4, height=560,
     )
     if use_continuous:
@@ -590,7 +591,24 @@ with tab_map:
 
     fig.update_layout(map_style="carto-positron", margin=dict(l=0, r=0, t=0, b=0))
     fig = themed(fig, legend_top=True)
-    st.plotly_chart(fig, width="stretch")
+
+    map_event = st.plotly_chart(
+        fig, width="stretch", on_select="rerun", key="map_click"
+    )
+
+    if map_event and map_event.selection and map_event.selection.points:
+        point = map_event.selection.points[0]
+        clicked_headline = point.get("hovertext", "Selected article")
+        clicked_url = None
+        if point.get("customdata"):
+            clicked_url = point["customdata"][0]
+
+        if clicked_url and clicked_url != "Unknown":
+            st.link_button(f"🔗 Read: {clicked_headline}", clicked_url)
+        else:
+            st.caption(f"**{clicked_headline}** — no source URL available for this incident.")
+    else:
+        st.caption("Click a marker on the map to open its source article.")
 
     st.write("")
     section_head("Top conflict hotspots", "Districts with the most reported incidents in this view.", OCHRE)
